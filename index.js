@@ -5,6 +5,7 @@ module.exports = function AutoMount(mod) {
   let enabled=false,
     _gameId,
     _name='',
+    _inCombat=false,
     config,
     fileopen=true,
     stopwrite,
@@ -51,8 +52,14 @@ module.exports = function AutoMount(mod) {
     if(enabled) msg('Automount ON. Delay set to ' + delay)
 	})
   
+  mod.hook('S_PLAYER_STAT_UPDATE', 10, event => {
+    _inCombat = event.inCombat
+    
+    if(_inCombat && enabled) delay = config.delay
+  })
+  
   mod.hook('C_PLAYER_LOCATION', 5, event => {
-    if(enabled && !mounted){
+    if(enabled && !mounted && !_inCombat){
       switch (event.type){
         case 0:
         case 1:
@@ -93,7 +100,7 @@ module.exports = function AutoMount(mod) {
   })
   
   function mount(){
-    if(enabled && delay<=0){
+    if(enabled && delay<=0 && !_inCombat){
       if(currentMount==0 || currentMount==null){
         msg('mount not set. Use command: am set')
         enabled=false

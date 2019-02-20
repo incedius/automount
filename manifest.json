@@ -3,7 +3,7 @@
         "LICENSE": "230184f60bae2feaf244f10a8bac053c8ff33a183bcc365b4d8b876d2b7f4809",
         "README.md": "55e1a6c53d74f28fc076863064d7c8e278abb5d73e9ac12b751b71d2639c7c85",
         "config-default.json": "738813a6bbcfc82c5ffbd7e567bcb0d1442f39d28254d7c697b07e0c97675e44",
-        "index.js": "b8fcc9fbc90e74fb81dee2ef0e029436d6b30d79035fc228bdc8a3f759e8a80a",
+        "index.js": "22e0d084806b55b8c1cbaa49b87c4ec0ec5319172023f49a1fbabbf47be277e0",
         "module.json": "5d792db89e37d44cda47ada2b2e681dd75c7292938c681cf681e2f7d88a84d90"
     },
     "defs": {
@@ -11,6 +11,7 @@
         "C_START_SKILL": 7,
         "S_LOGIN": 12,
         "S_MOUNT_VEHICLE": 2,
+        "S_PLAYER_STAT_UPDATE": 10,
         "S_UNMOUNT_VEHICLE": 2
     }
 }
