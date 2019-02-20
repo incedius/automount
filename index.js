@@ -49,6 +49,7 @@ module.exports = function AutoMount(mod) {
     _name = event.name
     currentMount = config.currentMount[_name]
     delay = config.delay
+    enabled = config.enabled
     if(enabled) msg('Automount ON. Delay set to ' + delay)
 	})
   
