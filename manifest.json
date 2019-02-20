@@ -1,0 +1,16 @@
+{
+    "files": {
+        "LICENSE": "230184f60bae2feaf244f10a8bac053c8ff33a183bcc365b4d8b876d2b7f4809",
+        "README.md": "3f814ebb9b9146ed2a72c6a1a0f87fa7c7fe277df8c666fb7c2d2b1465f7dcff",
+        "config-default.json": "c9b16052fa61a9a82d73dd4fd31a787ca77196040b323cec6be0696dc751b0b5",
+        "index.js": "9262e21d4b9105d37680633a73421d4346ba5df3788cd886aaa36bb36adcb971",
+        "module.json": "5d792db89e37d44cda47ada2b2e681dd75c7292938c681cf681e2f7d88a84d90"
+    },
+    "defs": {
+        "C_PLAYER_LOCATION": 5,
+        "C_START_SKILL": 7,
+        "S_LOGIN": 12,
+        "S_MOUNT_VEHICLE": 2,
+        "S_UNMOUNT_VEHICLE": 2
+    }
+}

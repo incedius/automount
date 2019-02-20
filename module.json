@@ -1,0 +1,13 @@
+{
+    "disableAutoUpdate": false,
+    "name": "automount",
+    "author": "Incedius",
+    "description": "Auto mount some time after moving.",
+    "options": {
+        "niceName": "Automount",
+        "guiName": "Automount"
+    },
+    "servers": ["https://raw.githubusercontent.com/incedius/automount/master/"],
+    "supportUrl": "https://github.com/incedius/automount/issues",
+    "version": "1.0"
+}

@@ -1,0 +1,5 @@
+*.lnk
+/manifest-generator.bat
+/manifest-generator.js
+/module.config.json
+/config.json
