@@ -86,10 +86,6 @@ module.exports = function AutoMount(mod) {
       msg('Mount set to: ' + currentMount)
       save(config,"config.json")
     }
-    
-    if(enabled){
-      reset()
-    }
   })
   
   mod.hook('S_UNMOUNT_VEHICLE', 2, event => {
