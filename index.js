@@ -68,9 +68,6 @@ module.exports = function AutoMount(mod) {
         default:
           delay = config.delay
       }
-      
-      delay--
-      mount()
     }
   })
   
