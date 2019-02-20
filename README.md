@@ -2,6 +2,10 @@
 
 tera-proxy module to automatically mount some set time after you start moving.
 
+**Quirk**
+
+Jumping as you move will reset the "timer/counter". Move like Leeroy to prevent automount without toggling it off.
+
 # Usage
 
 Use command `automount` or `am` to toggle ON/OFF. Default OFF

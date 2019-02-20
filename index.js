@@ -27,14 +27,9 @@ module.exports = function AutoMount(mod) {
   mod.command.add(['automount','am'], {
     $none() {
       enabled=!enabled
-      
-      if(enabled){
-        msg("enabled")
-        delay=config.delay
-      } else{
-        msg("disabled")
-        reset()
-      }
+      config.enabled = enabled
+      save(config,"config.json")
+      msg(enabled?'enabled':'disabled')
     },
     set(){
       setMount = ! setMount
@@ -53,6 +48,7 @@ module.exports = function AutoMount(mod) {
     _name = event.name
     currentMount = config.currentMount[_name]
     delay = config.delay
+    if(enabled) msg('Automount ON. Delay set to ' + delay)
 	})
   
   mod.hook('C_PLAYER_LOCATION', 5, event => {
@@ -126,10 +122,6 @@ module.exports = function AutoMount(mod) {
         "unk2": false
       })
     }
-  }
-  
-  function reset() {
-    setMount=false
   }
 
   function save(data, filename){
