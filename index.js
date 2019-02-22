@@ -15,7 +15,8 @@ module.exports = function AutoMount(mod) {
     currentMount=0,
     bigzero = BigInt(0),
     w,
-    loc
+    loc,
+	  flying=false
 
   try{
     config = JSON.parse(fs.readFileSync(path.join(__dirname,'config.json'), 'utf8'))
@@ -60,6 +61,7 @@ module.exports = function AutoMount(mod) {
   })
   
   mod.hook('C_PLAYER_LOCATION', 5, event => {
+	flying=false
     if(enabled && !mounted && !_inCombat){
       switch (event.type){
         case 0:
@@ -75,10 +77,23 @@ module.exports = function AutoMount(mod) {
     }
   })
   
+  mod.hook('C_START_SKILL', 7, {"order": -999}, event => {
+	  return unmount()
+  })
+  
+  mod.hook('C_PRESS_SKILL', 4, {"order": -999}, event => {
+    return unmount()
+  })
+  
+  mod.hook('C_PLAYER_FLYING_LOCATION', 4, event => {
+	  flying = true
+  })
+  
   mod.hook('S_MOUNT_VEHICLE', 2, event => {
     if (event.gameId != _gameId) return
     
     mounted = true
+	flying = false
     
     if(setMount){
       currentMount = event.skill
@@ -93,8 +108,26 @@ module.exports = function AutoMount(mod) {
     if (event.gameId != _gameId) return
     
     mounted = false
+    flying = false
     delay = config.delay
   })
+  
+  mod.hook('S_SHORTCUT_CHANGE', 2, event=>{
+	  if(enabled && mounted) return false
+  })
+  
+  function unmount(){
+    if(enabled && mounted && !flying){
+      mod.toServer('C_UNMOUNT_VEHICLE', 1, {})
+      mod.toClient('S_UNMOUNT_VEHICLE', 2, {
+        "gameId": _gameId,
+        "skill": currentMount
+      })
+      return false
+	  }
+    
+    return true
+  }
   
   function mount(){
     if(enabled && delay<=0 && !_inCombat){
@@ -104,6 +137,7 @@ module.exports = function AutoMount(mod) {
         return
       }
       delay = config.delay
+	  
       mod.toServer('C_START_SKILL', 7, {
         "skill": {
             "reserved": 0,

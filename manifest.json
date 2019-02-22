@@ -1,17 +1,22 @@
 {
     "files": {
         "LICENSE": "230184f60bae2feaf244f10a8bac053c8ff33a183bcc365b4d8b876d2b7f4809",
-        "README.md": "55e1a6c53d74f28fc076863064d7c8e278abb5d73e9ac12b751b71d2639c7c85",
+        "README.md": "2094e94439822fe322edc7fcd487a06c97f9d862541ed7277c5bc65ebbd5862c",
         "config-default.json": "738813a6bbcfc82c5ffbd7e567bcb0d1442f39d28254d7c697b07e0c97675e44",
-        "index.js": "d851a193bd774f5966bcc2a4fd35c3dddff87e93bfc800e3dc8eac361f20c805",
+        "index.js": "497c5a6ca619d1b3a551065e9ba78472bd1ce30245f4bc8862cdd84cc292d5fc",
+        "module.config.json": "fccfa1f9e19b11a6d58abbc07369f696ed9ea3873e263f6a2adf8e04d672d4d4",
         "module.json": "5d792db89e37d44cda47ada2b2e681dd75c7292938c681cf681e2f7d88a84d90"
     },
     "defs": {
+        "C_PLAYER_FLYING_LOCATION": 4,
         "C_PLAYER_LOCATION": 5,
+        "C_PRESS_SKILL": 4,
         "C_START_SKILL": 7,
+        "C_UNMOUNT_VEHICLE": 1,
         "S_LOGIN": 12,
         "S_MOUNT_VEHICLE": 2,
         "S_PLAYER_STAT_UPDATE": 10,
+        "S_SHORTCUT_CHANGE": 2,
         "S_UNMOUNT_VEHICLE": 2
     }
 }
