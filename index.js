@@ -45,7 +45,7 @@ module.exports = function AutoMount(mod) {
     }
   })
   
-  mod.hook('S_LOGIN', 12, event => { 
+  mod.hook('S_LOGIN', mod.majorPatchVersion >= 81 ? 13 : 12, event => { 
 		_gameId = event.gameId
     _name = event.name
     currentMount = config.currentMount[_name]
