@@ -54,8 +54,8 @@ module.exports = function AutoMount(mod) {
     if(enabled) msg('Automount ON. Delay set to ' + delay)
 	})
   
-  mod.hook('S_PLAYER_STAT_UPDATE', 10, event => {
-    _inCombat = event.inCombat
+  mod.hook('S_USER_STATUS', 3, event => {
+    _inCombat = (event.status == 1)
     
     if(_inCombat && enabled) delay = config.delay
   })
