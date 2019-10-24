@@ -13,6 +13,7 @@ Use command `automount` or `am` to toggle ON/OFF. Default OFF
 `am delay <delay value>` to configure delay. Default `10`. Delay isn't based on time but depends on the number of location change packets sent from the client.
 
 # Changelog
+- 1.1.2 Updated for patch 86
 - 1.1.1 Updated use S_USER_STATUS for combat
 - 1.1 Added dismount by skill cast.
 - 1.0 Base

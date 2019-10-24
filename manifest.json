@@ -1,10 +1,10 @@
 {
     "files": {
         "LICENSE": "230184f60bae2feaf244f10a8bac053c8ff33a183bcc365b4d8b876d2b7f4809",
-        "README.md": "e97f4fec62a461417680917dd30e1d2c49b7a774adc53cf17c96708e2ecd54cf",
+        "README.md": "3e9dadd2f773bb6d49f96b627f3ce66c243619fd5d864ef17f6f3e3d84ce0f3b",
         "config-default.json": "738813a6bbcfc82c5ffbd7e567bcb0d1442f39d28254d7c697b07e0c97675e44",
-        "index.js": "ccdd395046091b6c8ceff74afd9737476ef46e9cae9af6af73cf54badc6f924a",
-        "module.json": "838ed45aa32cdca8261c3d843f198f9c5f192822cfa2ea7e91ab1f3251b135dc"
+        "index.js": "5e1dbc0ac6e3ebcb98c05937be4d844c813da643386c01e08c952c7e87d7d67b",
+        "module.json": "934a94753921424755c88e8fb7f5f5de79043f6a737d3ee7ac7643f068e408b2"
     },
     "defs": {
         "C_PLAYER_FLYING_LOCATION": 4,
@@ -12,7 +12,6 @@
         "C_PRESS_SKILL": 4,
         "C_START_SKILL": 7,
         "C_UNMOUNT_VEHICLE": 1,
-        "S_LOGIN": [12,13],
         "S_MOUNT_VEHICLE": 2,
         "S_SHORTCUT_CHANGE": 2,
         "S_UNMOUNT_VEHICLE": 2,

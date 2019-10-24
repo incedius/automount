@@ -3,8 +3,6 @@ const path = require('path'),
 
 module.exports = function AutoMount(mod) {
   let enabled=false,
-    _gameId,
-    _name='',
     _inCombat=false,
     config,
     fileopen=true,
@@ -45,15 +43,14 @@ module.exports = function AutoMount(mod) {
     }
   })
   
-  mod.hook('S_LOGIN', mod.majorPatchVersion >= 81 ? 13 : 12, event => { 
-		_gameId = event.gameId
-    _name = event.name
-    currentMount = config.currentMount[_name]
+  if(mod.majorPatchVersion >= 85){
+    mod.game.initialize
+    currentMount = config.currentMount[mod.game.me.name]
     delay = config.delay
     enabled = config.enabled
     if(enabled) msg('Automount ON. Delay set to ' + delay)
-	})
-  
+  }
+
   mod.hook('S_USER_STATUS', 3, event => {
     _inCombat = (event.status == 1)
     
@@ -90,7 +87,7 @@ module.exports = function AutoMount(mod) {
   })
   
   mod.hook('S_MOUNT_VEHICLE', 2, event => {
-    if (event.gameId != _gameId) return
+    if (!mod.game.me.is(event.gameId)) return
     
     mounted = true
 	flying = false
@@ -98,14 +95,14 @@ module.exports = function AutoMount(mod) {
     if(setMount){
       currentMount = event.skill
       setMount = false
-      config.currentMount[_name] = currentMount
+      config.currentMount[mod.game.me.name] = currentMount
       msg('Mount set to: ' + currentMount)
       save(config,"config.json")
     }
   })
   
   mod.hook('S_UNMOUNT_VEHICLE', 2, event => {
-    if (event.gameId != _gameId) return
+    if (!mod.game.me.is(event.gameId)) return
     
     mounted = false
     flying = false
@@ -120,7 +117,7 @@ module.exports = function AutoMount(mod) {
     if(enabled && mounted && !flying){
       mod.toServer('C_UNMOUNT_VEHICLE', 1, {})
       mod.toClient('S_UNMOUNT_VEHICLE', 2, {
-        "gameId": _gameId,
+        "gameId":  mod.game.me.gameId,
         "skill": currentMount
       })
       return false
