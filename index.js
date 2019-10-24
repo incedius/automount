@@ -18,10 +18,22 @@ module.exports = function AutoMount(mod) {
 
   try{
     config = JSON.parse(fs.readFileSync(path.join(__dirname,'config.json'), 'utf8'))
+    enabled = config.enabled
+    msg("Config loaded")
   }
   catch(e){
     config = JSON.parse(fs.readFileSync(path.join(__dirname,'config-default.json'), 'utf8'))
     save(config,"config.json")
+    msg("New Config loaded")
+  }
+
+  if(mod.majorPatchVersion >= 85){
+    mod.game.initialize
+    currentMount = config.currentMount[mod.game.me.name]
+    delay = config.delay
+    enabled = config.enabled
+    if(enabled) msg('Automount ON. Delay set to ' + delay)
+    else msg('Automount OFF')
   }
   
   mod.command.add(['automount','am'], {
@@ -43,13 +55,7 @@ module.exports = function AutoMount(mod) {
     }
   })
   
-  if(mod.majorPatchVersion >= 85){
-    mod.game.initialize
-    currentMount = config.currentMount[mod.game.me.name]
-    delay = config.delay
-    enabled = config.enabled
-    if(enabled) msg('Automount ON. Delay set to ' + delay)
-  }
+  
 
   mod.hook('S_USER_STATUS', 3, event => {
     _inCombat = (event.status == 1)
@@ -90,7 +96,7 @@ module.exports = function AutoMount(mod) {
     if (!mod.game.me.is(event.gameId)) return
     
     mounted = true
-	flying = false
+	  flying = false
     
     if(setMount){
       currentMount = event.skill
@@ -127,6 +133,8 @@ module.exports = function AutoMount(mod) {
   }
   
   function mount(){
+    currentMount = config.currentMount[mod.game.me.name]
+
     if(enabled && delay<=0 && !_inCombat){
       if(currentMount==0 || currentMount==null){
         msg('mount not set. Use command: am set')
